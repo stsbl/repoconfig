@@ -4,7 +4,7 @@ set -e
 
 export LC_ALL=C
 
-iconf repair /etc/apt/soruces.list.d/stsbl.list
+iconf repair /etc/apt/sources.list.d/stsbl.list
 
 if [ ! -e "/var/lib/stsbl/" ]
 then

@@ -1,6 +1,12 @@
+stsbl-repoconfig (16.08.22-1) experimental; urgency=medium
+
+  * Fixed spelling error. 
+
+ -- Stadtteilschule Blankenese <repository@stsbl.de>  Mon, 22 Aug 2016 06:24:34 +0200
+
 stsbl-repoconfig (16.08.22-0) experimental; urgency=low
 
-  * Added reperation of sources.list file and other files as postinst script. 
+  * Added repairation of sources.list file and other files as postinst script. 
 
  -- Stadtteilschule Blankenese <repository@stsbl.de>  Mon, 22 Aug 2016 04:31:11 +0200
 

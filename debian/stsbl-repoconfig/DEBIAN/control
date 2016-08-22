@@ -1,8 +1,8 @@
 Package: stsbl-repoconfig
-Version: 16.08.22-0
+Version: 16.08.22-1
 Architecture: all
 Maintainer: Stadtteilschule Blankenese <repository@stsbl.de>
-Installed-Size: 38
+Installed-Size: 87
 Depends: aptitude, bash (>= 4.2), dialog, iserv-update, stsbl-keyring
 Section: utils
 Priority: extra
