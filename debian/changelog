@@ -1,3 +1,9 @@
+stsbl-repoconfig (16.08.22-0) experimental; urgency=low
+
+  * Added reperation of sources.list file and other files as postinst script. 
+
+ -- Stadtteilschule Blankenese <repository@stsbl.de>  Mon, 22 Aug 2016 04:31:11 +0200
+
 stsbl-repoconfig (16.05.10-0) experimental; urgency=medium
 
   * Fixed variable check in stsbl-repoconfig.

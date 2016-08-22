@@ -1,0 +1,24 @@
+#!/bin/bash
+
+set -e
+
+export LC_ALL=C
+
+iconf repair /etc/apt/soruces.list.d/stsbl.list
+
+if [ ! -e "/var/lib/stsbl/" ]
+then
+  mkdir /var/lib/stsbl/
+  echo "Created directory /var/lib/stsbl/."
+else
+  echo "/var/lib/stsbl/ was ok."
+fi
+
+if [ ! -e "/var/lib/stsbl/repoconfig.sh" ]
+then
+  touch /var/lib/stsbl/repoconfig.sh
+  chmod 640 /var/lib/stsbl/repoconfig.sh
+  echo "Touched file /var/lib/stsbl/repoconfig.sh."
+else
+  echo "/var/lib/stsbl/repoconfig.sh was ok."
+fi
