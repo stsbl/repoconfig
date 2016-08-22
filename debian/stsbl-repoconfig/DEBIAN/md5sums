@@ -2,7 +2,7 @@ b3ddd1b0b35d363981a233eba22f97de  usr/lib/stsbl/repocfg
 f40e830d6a407f9a199abc4c023fac60  usr/sbin/stsbl-repoconfig
 e1c940f146db2a6feb96748a8ff9ae87  usr/sbin/stsbl-umode
 1da2f18a8f53a92afe4789896f456c15  usr/share/doc/stsbl-repoconfig/README.Debian
-15bcca17cf8b694041991044390b8d8e  usr/share/doc/stsbl-repoconfig/changelog.Debian.gz
+f57a6104140f5d74171454ebdf95ea1e  usr/share/doc/stsbl-repoconfig/changelog.Debian.gz
 ea5b55d521f7975c97c3af6438b8d942  usr/share/doc/stsbl-repoconfig/copyright
 cb5b0186d9d15ff34562d255aa30759e  usr/share/iserv/iconf/etc/apt/sources.list.d/stsbl.list/00head
 e0e7fcd3c1cc04450c90e6278f343f80  usr/share/iserv/iconf/etc/apt/sources.list.d/stsbl.list/10sources.sh
