@@ -1,2 +1,5 @@
-debian/stsbl-repoconfig
+debian/stsbl-repoconfig/*
 debian/stsbl-repoconfig.debhelper.log
+debian/stsbl-repoconfig.substvars
+debian/files
+debian/debhelper-build-stamp
