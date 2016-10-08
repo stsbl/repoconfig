@@ -1,6 +1,4 @@
-#!/bin/bash
-
-set -e
+#!/bin/bash -e
 
 export LC_ALL=C
 
@@ -9,16 +7,33 @@ iconf repair /etc/apt/sources.list.d/stsbl.list
 if [ ! -e "/var/lib/stsbl/" ]
 then
   mkdir /var/lib/stsbl/
+  chmod 0755 /var/lib/stsbl/
   echo "Created directory /var/lib/stsbl/."
 else
-  echo "/var/lib/stsbl/ was ok."
+  echo "/var/lib/stsbl/ was created."
+fi
+
+if [ $(stat -c "%a" /var/lib/stsbl/) != "755" ]
+then
+  chmod 0755 /var/lib/stsbl/
+  echo "/var/lib/stsbl/ permissions changed to 755."
+else
+  echo "/var/lib/stsbl/ permissions were ok."
 fi
 
 if [ ! -e "/var/lib/stsbl/repoconfig.sh" ]
 then
   touch /var/lib/stsbl/repoconfig.sh
   chmod 640 /var/lib/stsbl/repoconfig.sh
-  echo "Touched file /var/lib/stsbl/repoconfig.sh."
+  echo "/var/lib/stsbl/repoconfig.sh touched."
 else
   echo "/var/lib/stsbl/repoconfig.sh was ok."
+fi
+
+if [ $(stat -c "%a" /var/lib/stsbl/repoconfig.sh) != "640" ]
+then
+  chmod 640 /var/lib/stsbl/repoconfig.sh
+  echo "/var/lib/stsbl/repoconfig.sh changed to 640."
+else
+  echo "/var/lib/stsbl/ permissions were ok."
 fi
