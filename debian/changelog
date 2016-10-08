@@ -1,3 +1,15 @@
+stsbl-repoconfig (16.10.08-0) experimental; urgency=low
+
+  [ Felix Jacobi ]
+  * Updated .gitignore. Removed variable files from repository.
+  * Changed source format from native to quilt.
+  * Removed variable files from git repository.
+  * Improved postinst script.
+
+  [ Felix Jacobi ]
+
+ -- Stadtteilschule Blankenese <repository@stsbl.de>  Sat, 08 Oct 2016 23:23:05 +0200
+
 stsbl-repoconfig (16.08.22-1) experimental; urgency=medium
 
   * Fixed spelling error. 
