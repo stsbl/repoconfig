@@ -1,4 +1,0 @@
-#!/bin/sh
-if [ -r "/var/lib/stsbl/repoconfig.sh" ]; then
-  . /var/lib/stsbl/repoconfig.sh
-fi
