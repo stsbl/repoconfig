@@ -1,6 +1,4 @@
-src/repocfg usr/lib/stsbl
-src/stsbl-repoconfig usr/sbin
-src/stsbl-umode usr/sbin
-iconf/chk.d/14apt/30stsbl-repository usr/share/iserv/iconf/etc/iserv/chk.d/14apt
-iconf/stsbl.list/00head usr/share/iserv/iconf/etc/apt/sources.list.d/stsbl.list
-iconf/stsbl.list/10sources.sh usr/share/iserv/iconf/etc/apt/sources.list.d/stsbl.list
+lib/* /usr/lib/stsbl/
+sbin/* usr/sbin/
+iconf/* usr/share/iserv/iconf/
+iservchk/* usr/share/iserv/iconf/etc/iserv/chk.d/
