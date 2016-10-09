@@ -2,13 +2,22 @@
 
 . /usr/lib/stsbl/repocfg
 
-if [ "$REPOCUSTOMERNUMBER" = "" ] || [ "$REPOPASSWORD" = "" ]; then
-  REPOBASEURL="https://repository.stsbl.de/debian"
+if [ $(hostname) = "rpt.stsbl.test" ]
+then
+  REPOHOST="snapshot.repository.stsbl.de"
 else
-  REPOBASEURL="https://customer-$REPOCUSTOMERNUMBER:$REPOPASSWORD@repository.stsbl.de/debian"
+  REPOHOST="repository.stsbl.de"
 fi
 
-if [ "$REPOUPDATEMODE" = "" ]; then
+if [ "$REPOCUSTOMERNUMBER" = "" ] || [ "$REPOPASSWORD" = "" ]
+then
+  REPOBASEURL="https://$REPOHOST/debian"
+else
+  REPOBASEURL="https://customer-$REPOCUSTOMERNUMBER:$REPOPASSWORD@$REPOHOST/debian"
+fi
+
+if [ "$REPOUPDATEMODE" = "" ]
+then
   REPOUPDATEMODE=stable
 fi
 

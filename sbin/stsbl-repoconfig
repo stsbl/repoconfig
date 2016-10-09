@@ -268,7 +268,17 @@ storeParams() {
   echo "REPOCUSTOMERNUMBER=\"$CUSTOMERNUMBER\"" >> /var/lib/stsbl/repoconfig.sh
   echo "REPOPASSWORD=\"$PASSWORD\"" >> /var/lib/stsbl/repoconfig.sh
   echo "REPOUPDATEMODE=\"$UPDATEMODE\"" >> /var/lib/stsbl/repoconfig.sh
-  echo "Params stored sucessfull."
+  echo "Params stored sucessful."
+  
+  # use snapshot server for repository testing server
+  if [ $(hostname) = "rpt.stsbl.test" ]
+  then
+    echo "Hi there! I've dectected that you are on $HOSTNAME. So, you going to use the snapshot repository."
+    echo "Enjoy!"
+    echo
+    echo "Press any key to continue..."
+    read
+  fi
 }
 
 callSysFunctions() {
