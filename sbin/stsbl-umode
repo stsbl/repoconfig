@@ -44,13 +44,13 @@ storeParams() {
   echo "REPOCUSTOMERNUMBER=\"$REPOCUSTOMERNUMBER\"" >> /var/lib/stsbl/repoconfig.sh
   echo "REPOPASSWORD=\"$REPOPASSWORD\"" >> /var/lib/stsbl/repoconfig.sh
   echo "REPOUPDATEMODE=\"$NEWUPDATEMODE\"" >> /var/lib/stsbl/repoconfig.sh
-  echo "Params stored sucessfull."
+  echo "Params stored sucessful."
 }
 
 # Superuser check
 if [ $UID != 0 ]; then
   echo "Root rights are required to run this program." >&2
-  exit 0
+  exit 1
 fi
 
 # Checking number of arguments
@@ -91,7 +91,7 @@ else
   echo "Unknown update mode." >&2
   echo >&2
   echoHelp >&2
-  exit 0
+  exit 1
 fi
 
 storeParams
