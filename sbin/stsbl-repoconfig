@@ -268,8 +268,15 @@ storeParams() {
   echo "REPOCUSTOMERNUMBER=\"$CUSTOMERNUMBER\"" >> /var/lib/stsbl/repoconfig.sh
   echo "REPOPASSWORD=\"$PASSWORD\"" >> /var/lib/stsbl/repoconfig.sh
   echo "REPOUPDATEMODE=\"$UPDATEMODE\"" >> /var/lib/stsbl/repoconfig.sh
-  echo "Params stored sucessful."
-  
+  echo "Params stored sucessful."  
+}
+
+callSysFunctions() {
+  iservchk apt
+  aptitude update &> /dev/null
+}
+
+showSnapshotMessage() {
   # use snapshot server for repository testing server
   if [ $(hostname) = "rpt.stsbl.test" ]
   then
@@ -279,11 +286,6 @@ storeParams() {
     echo "Press any key to continue..."
     read
   fi
-}
-
-callSysFunctions() {
-  iservchk apt
-  aptitude update &> /dev/null
 }
 
 # main program
@@ -297,6 +299,7 @@ readConfig
 askForDists
 storeParams
 readConfig
+showSnapshotMessage
 callSysFunctions
 
 # cleaning up
