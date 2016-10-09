@@ -1,3 +1,13 @@
+stsbl-repoconfig (16.10.09-1) experimental; urgency=medium
+
+  [ Felix Jacobi ]
+  * Updated source package structure.
+  * Added support for internal snapshot repository.
+
+  [ Felix Jacobi ]
+
+ -- Stadtteilschule Blankenese <repository@stsbl.de>  Sun, 09 Oct 2016 18:43:20 +0200
+
 stsbl-repoconfig (16.10.09-0) experimental; urgency=low
 
   [ Felix Jacobi ]
