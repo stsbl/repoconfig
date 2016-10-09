@@ -8,9 +8,9 @@ if [ ! -e "/var/lib/stsbl/" ]
 then
   mkdir /var/lib/stsbl/
   chmod 0755 /var/lib/stsbl/
-  echo "Created directory /var/lib/stsbl/."
+  echo "/var/lib/stsbl/ created."
 else
-  echo "/var/lib/stsbl/ was created."
+  echo "/var/lib/stsbl/ was ok."
 fi
 
 if [ $(stat -c "%a" /var/lib/stsbl/) != "755" ]
