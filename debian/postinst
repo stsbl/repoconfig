@@ -35,5 +35,5 @@ then
   chmod 640 /var/lib/stsbl/repoconfig.sh
   echo "/var/lib/stsbl/repoconfig.sh changed to 640."
 else
-  echo "/var/lib/stsbl/ permissions were ok."
+  echo "/var/lib/stsbl/repoconfig.sh permissions were ok."
 fi
