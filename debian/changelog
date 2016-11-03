@@ -1,3 +1,12 @@
+stsbl-repoconfig (16.11.03-0) experimental; urgency=medium
+
+  [ Felix Jacobi ]
+  * Fixed typo in postinst script.
+
+  [ Stadtteilschule Blankenese ]
+
+ -- Stadtteilschule Blankenese <repository@stsbl.de>  Thu, 03 Nov 2016 21:33:04 +0100
+
 stsbl-repoconfig (16.10.10-0) experimental; urgency=low
 
   [ Felix Jacobi ]
