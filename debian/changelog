@@ -1,3 +1,12 @@
+stsbl-repoconfig (16.11.24-0) experimental; urgency=medium
+
+  [ Felix Jacobi ]
+  * Added iservchk legacy script to install the repository monitor.
+
+  [ Stadtteilschule Blankenese ]
+
+ -- Stadtteilschule Blankenese <repository@stsbl.de>  Thu, 24 Nov 2016 06:28:17 +0100
+
 stsbl-repoconfig (16.11.03-0) experimental; urgency=medium
 
   [ Felix Jacobi ]
