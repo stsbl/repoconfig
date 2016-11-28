@@ -1,8 +1,8 @@
 Test "stsbl: Fix typos in package maintainer"
   "grep ^80stsbl-repoconfig_maintainer$ /var/lib/iserv/config/update.log"
-  "if [[ $(dpkg-query --showformat='${Status}\n' --show 'iserv-portal' | grep 'install ok installed')  ]]\
-   then\
-     psql -c \"UPDATE news_changelog SET maintainer = 'Stadtteilschule Blankenese' WHERE maintainer = 'Satdtteilschule' OR maintainer = 'Stadttteilschule Blankenese'\" && echo 80stsbl-repoconfig_maintainer >> /var/lib/iserv/config/update.log\
-   else\
-     echo 80stsbl-repoconfig_maintainer >> /var/lib/iserv/config/update.log\
+  "if [[ $(dpkg-query --showformat='${Status}\n' --show 'iserv-portal' | grep 'install ok installed')  ]]
+   then
+     psql -c \"UPDATE news_changelog SET maintainer = 'Stadtteilschule Blankenese' WHERE maintainer = 'Satdtteilschule' OR maintainer = 'Stadttteilschule Blankenese'\" iserv postgres && echo 80stsbl-repoconfig_maintainer >> /var/lib/iserv/config/update.log
+   else
+     echo 80stsbl-repoconfig_maintainer >> /var/lib/iserv/config/update.log
    fi"
