@@ -1,3 +1,13 @@
+stsbl-repoconfig (16.12.24-0) experimental; urgency=medium
+
+  [ Felix Jacobi ]
+  * stsbl-umode: Fixed wrong variable names.
+  * libs: Remove x bit.
+
+  [ Stadtteilschule Blankenese ]
+
+ -- Stadtteilschule Blankenese <repository@stsbl.de>  Sat, 24 Dec 2016 00:07:25 +0100
+
 stsbl-repoconfig (16.12.23-1) experimental; urgency=medium
 
   [ Felix Jacobi ]
