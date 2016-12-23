@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# Common functions of stsbl-repconfig used by all components.
+
+# Storing values to state file
+storeConfig() {
+  if [ ! -e "/var/lib/stsbl/" ]
+  then
+    mkdir -m 0755 /var/lib/stsbl/
+  fi
+
+  if [ ! -e "/var/lib/stsbl/repoconfig.sh" ]
+  then
+    touch /var/lib/stsbl/repoconfig.sh
+    chmod 0640 /var/lib/stsbl/repoconfig.sh
+  fi
+
+  echo "#!/bin/sh" > /var/lib/stsbl/repoconfig.sh
+  echo "# Automatically generated! Do not change!" >> /var/lib/stsbl/repoconfig.sh
+  echo "REPOCUSTOMERNUMBER=\"$CUSTOMERNUMBER\"" >> /var/lib/stsbl/repoconfig.sh
+  echo "REPOPASSWORD=\"$PASSWORD\"" >> /var/lib/stsbl/repoconfig.sh
+  echo "REPOUPDATEMODE=\"$UPDATEMODE\"" >> /var/lib/stsbl/repoconfig.sh
+
+  echo "Konfiguration erfolgreich gespeichert."  
+}

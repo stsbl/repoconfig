@@ -1,8 +1,8 @@
 #!/bin/sh
 
-. /usr/lib/stsbl/repocfg
+. /usr/lib/iserv/stsblrepocfg
 
-if [ $(hostname) = "rpt.stsbl.test" ]
+if [ "$(hostname)" = "rpt.stsbl.test" ]
 then
   REPOHOST="snapshot.repository.stsbl.de"
 else
