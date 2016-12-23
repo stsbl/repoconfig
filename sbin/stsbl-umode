@@ -22,7 +22,7 @@
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 # source common library
-- /usr/lib/iserv/stsblrepocfg-common
+. /usr/lib/iserv/stsblrepocfg-common
 
 # Prints out the program help
 echoHelp() {
