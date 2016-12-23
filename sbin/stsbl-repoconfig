@@ -1,6 +1,6 @@
-#!/bin/bash
+#!/bin/bash -e
 
-# STSBL Repository Configuration Program
+# StsBl Repository Configuration Program
 # Copyright (C) 2016 Felix Jacobi
 #
 # This program is free software: you can redistribute it and/or modify
@@ -15,9 +15,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>
 
-# Abort on errors
-set -e
-
 # Superuser check
 if [ $UID != "0" ]; then
   echo "Root rights are required to run this program." >&2
@@ -30,10 +27,8 @@ echo > $OUTPUT
 
 # Reading config values
 readConfig() {
-  if [ -r "/var/lib//stsbl/repoconfig.sh" ]
-  then
-    source /var/lib/stsbl/repoconfig.sh
-  fi
+  # source config
+  . /usr/lib/iserv/stsblrepocfg
 
   if [ -v REPOCUSTOMERNUMBER ]
   then
@@ -54,25 +49,25 @@ readConfig() {
 # Function for config cancelling with messagebox
 # Currently unsed
 cancelConfig() {
-  dialog --backtitle "STSBL Repository setup" --stdout --title "Are you sure?" --yesno "Are you sure that you want to cancel the configuration?" 15 35
+  dialog --backtitle "StsBl Repository setup" --stdout --title "Are you sure?" --yesno "Are you sure that you want to cancel the configuration?" 15 35
   RESPOSE=$?
   if [ "$RESPOSE" = "0" ] || [ "$RESPOSE" = "255" ]
   then
-    dialog --backtitle "STSBL Repository setup" --stdout --title "Cancelled" --msgbox "You cancelled the setup."  15 35
+    dialog --backtitle "StsBl Repository setup" --stdout --title "Cancelled" --msgbox "You cancelled the setup."  15 35
     exit 2
   fi
 }
 
 # Asking for customer number
 askForCustomerNumber() {
-  dialog --backtitle "STSBL Repository setup" --stdout --title "Customer number" --inputbox "Enter your customer number:" 14 35 $REPOCUSTOMERNUMBER > $OUTPUT
+  dialog --backtitle "StsBl Repository setup" --stdout --title "Customer number" --inputbox "Enter your customer number:" 14 35 $REPOCUSTOMERNUMBER > $OUTPUT
   RESPOSE=$?
   CUSTOMERNUMBER=$(cat $OUTPUT)
   if [ "$RESPOSE" = "0" ]
   then
     if [ "$CUSTOMERNUMBER" = "" ]
     then
-      dialog --backtitle "STSBL Repository setup" --stdout --title "Error" --msgbox "Customer number can not be empty.\n\nTry it again."  15 35
+      dialog --backtitle "StsBl Repository setup" --stdout --title "Error" --msgbox "Customer number can not be empty.\n\nTry it again."  15 35
       askForCustomerNumber
       return
     else
@@ -88,14 +83,14 @@ askForCustomerNumber() {
 
 # Asking for password
 askForPassword() {
-  dialog --backtitle "STSBL Repository setup" --stdout --title "Password" --inputbox "Enter the password for the customer number $CUSTOMERNUMBER:" 15 35 $REPOPASSWORD > $OUTPUT
+  dialog --backtitle "StsBl Repository setup" --stdout --title "Password" --inputbox "Enter the password for the customer number $CUSTOMERNUMBER:" 15 35 $REPOPASSWORD > $OUTPUT
   RESPOSE=$?
   PASSWORD=$(cat $OUTPUT)
   if [ "$RESPOSE" = "0" ]
   then
     if [ "$PASSWORD" = "" ]
     then
-      dialog --backtitle "STSBL Repository setup" --stdout --title "Error" --msgbox "Password can not be empty.\n\nTry it again."  15 35
+      dialog --backtitle "StsBl Repository setup" --stdout --title "Error" --msgbox "Password can not be empty.\n\nTry it again."  15 35
       askForPassword
       return
     else
@@ -139,7 +134,7 @@ askForDists() {
     UNSTABLEENABLED=off
   fi
 
-  dialog --backtitle "STSBL Repository setup" --stdout --title "Select update mode" --radiolist "Select the update mode for the repository:" 15 80 8 \
+  dialog --backtitle "StsBl Repository setup" --stdout --title "Select update mode" --radiolist "Select the update mode for the repository:" 15 80 8 \
          01 "stable" $STABLEENABLED \
          02 "testing" $TESTINGENABLED \
          03 "unstable (not recommended)" $UNSTABLEENABLED > $OUTPUT
@@ -149,7 +144,7 @@ askForDists() {
   then
     if [ "$UPDATEMODE" = "" ]
     then
-      dialog --backtitle "STSBL Repository setup" --stdout --title "Error" --msgbox "Select an update mode.\n\nTry it again."  15 35
+      dialog --backtitle "StsBl Repository setup" --stdout --title "Error" --msgbox "Select an update mode.\n\nTry it again."  15 35
       askForDists
     else
       if [ "$UPDATEMODE" = "01" ]
@@ -162,7 +157,7 @@ askForDists() {
       then
         UPDATEMODE=unstable
       else
-        dialog --backtitle "STSBL Repository setup" --stdout --title "Error" --msgbox "Unknown update mode.\n\nTry it again."  15 35
+        dialog --backtitle "StsBl Repository setup" --stdout --title "Error" --msgbox "Unknown update mode.\n\nTry it again."  15 35
         askForDists
         return
       fi
@@ -171,7 +166,7 @@ askForDists() {
         # temporary unset exit on errors, because if in the following question the user
         # would select no, the program would exit (because of exit code 1)
         set +e
-        dialog --backtitle "STSBL Repository setup" --stdout --title "Are you sure?" --yesno "Are you sure that you want to use unstable as update mode?\nIt could damage your system. Only using on testing systems is recommended." 15 35
+        dialog --backtitle "StsBl Repository setup" --stdout --title "Are you sure?" --yesno "Are you sure that you want to use unstable as update mode?\nIt could damage your system. Only using on testing systems is recommended." 15 35
         RESPOSE=$?
         if [ "$RESPOSE" = "1" ]
         then
@@ -214,7 +209,7 @@ askForSuits() {
     MAINENABLED=on
   fi
 
-  dialog --backtitle "STSBL Repository setup" --stdout --title "Select suits" --checklist "Select the suits from which you want to install packages:" 15 80 8 \
+  dialog --backtitle "StsBl Repository setup" --stdout --title "Select suits" --checklist "Select the suits from which you want to install packages:" 15 80 8 \
          01 "main" $MAINENABLED \
          02 "non-free (indemnity agreement required)" $NONFREEENABLED > $OUTPUT
   RESPOSE=$?
@@ -223,7 +218,7 @@ askForSuits() {
   then
     if [ "$SUITS" = "0" ]
     then
-      dialog --backtitle "STSBL Repository setup" --stdout --title "Error" --msgbox "Select at least one suite.\n\nTry it again."  15 35
+      dialog --backtitle "StsBl Repository setup" --stdout --title "Error" --msgbox "Select at least one suite.\n\nTry it again."  15 35
       askForSuits
       return
     else
@@ -252,15 +247,16 @@ askForSuits() {
 }
 
 # Storing values to state file
-storeParams() {
+storeConfig() {
   if [ ! -e "/var/lib/stsbl/" ]
   then
-    mkdir /var/lib/stsbl/
+    mkdir -m 0755 /var/lib/stsbl/
   fi
 
   if [ ! -e "/var/lib/stsbl/repoconfig.sh" ]
   then
     touch /var/lib/stsbl/repoconfig.sh
+    chmod 0640 /var/lib/stsbl/repoconfig.sh
   fi
 
   echo "#!/bin/sh" > /var/lib/stsbl/repoconfig.sh
@@ -268,7 +264,9 @@ storeParams() {
   echo "REPOCUSTOMERNUMBER=\"$CUSTOMERNUMBER\"" >> /var/lib/stsbl/repoconfig.sh
   echo "REPOPASSWORD=\"$PASSWORD\"" >> /var/lib/stsbl/repoconfig.sh
   echo "REPOUPDATEMODE=\"$UPDATEMODE\"" >> /var/lib/stsbl/repoconfig.sh
-  echo "Params stored sucessful."  
+  
+  echo 
+  echo "Konfiguration erfolgreich gespeichert."  
 }
 
 callSysFunctions() {
@@ -280,7 +278,7 @@ showSnapshotMessage() {
   # use snapshot server for repository testing server
   if [ $(hostname) = "rpt.stsbl.test" ]
   then
-    echo "Hi there! I've dectected that you are on $HOSTNAME. So, you going to use the snapshot repository."
+    echo "Hi there! I've dectected that you are on $(hostname). So, you going to use the snapshot repository."
     echo "Enjoy!"
     echo
     echo "Press any key to continue..."
@@ -291,13 +289,13 @@ showSnapshotMessage() {
 # main program
 readConfig
 askForCustomerNumber
-storeParams
+storeConfig
 readConfig
 askForPassword
-storeParams
+storeConfig
 readConfig
 askForDists
-storeParams
+storeConfig
 readConfig
 showSnapshotMessage
 callSysFunctions

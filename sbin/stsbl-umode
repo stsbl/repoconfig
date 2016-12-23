@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 
 # STSBL Repository Configuration Program
 # Copyright (C) 2016 Felix Jacobi
@@ -15,9 +15,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>
 
-# Abort on errors
-set -e
-
 # Prints out the program help
 echoHelp() {
   echo "Usement:"
@@ -32,18 +29,21 @@ echoHelp() {
 }
 
 # Store values to state file
-storeParams() {
+storeConfig() {
   if [ ! -e "/var/lib/stsbl/" ]; then
-    mkdir /var/lib/stsbl/
+    mkdir -m 0755 /var/lib/stsbl/
   fi
   if [ ! -e "/var/lib/stsbl/repoconfig.sh" ]; then
     touch /var/lib/stsbl/repoconfig.sh
+    chmod 0640 /var/lib/stsbl/repoconfig.sh
   fi
   echo "#!/bin/sh" > /var/lib/stsbl/repoconfig.sh
   echo "# Automatically generated! Do not change!" >> /var/lib/stsbl/repoconfig.sh
   echo "REPOCUSTOMERNUMBER=\"$REPOCUSTOMERNUMBER\"" >> /var/lib/stsbl/repoconfig.sh
   echo "REPOPASSWORD=\"$REPOPASSWORD\"" >> /var/lib/stsbl/repoconfig.sh
   echo "REPOUPDATEMODE=\"$NEWUPDATEMODE\"" >> /var/lib/stsbl/repoconfig.sh
+  
+  echo
   echo "Params stored sucessful."
 }
 
@@ -59,7 +59,7 @@ then
   echo "Wrong number of arguments." >&2
   echo >&2
   echoHelp >&2
-  exit 0
+  exit 1
 fi
 
 if [ "$1" = "--help" ]
@@ -68,8 +68,8 @@ then
   exit 0
 fi
 
-# Reading config
-source /usr/lib/stsbl/repocfg
+# source config
+. /usr/lib/iserv/stsblrepocfg
 
 OLDUPDATEMODE="$REPOUPDATEMODE"
 NEWUPDATEMODE="$1"
@@ -88,13 +88,13 @@ elif [ "$NEWUPDATEMODE" = "stable" ] || [ "$NEWUPDATEMODE" = "testing" ] || [ "$
 then
   echo "$OLDUPDATEMODE -> $NEWUPDATEMODE"
 else
-  echo "Unknown update mode." >&2
+  echo "Unknown update mode $NEWUPDATEMODE." >&2
   echo >&2
   echoHelp >&2
   exit 1
 fi
 
-storeParams
+storeConfig
 iservchk apt
 aptitude update &> /dev/null
 exit 0
