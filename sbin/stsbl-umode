@@ -84,6 +84,11 @@ else
   exit 1
 fi
 
+# assign values for storing
+CUSTOMERNUMBER=$REPOCUSTOMERNUMBER
+UPDATEMODE=$NEWUPDATEMODE
+PASSWORD=$REPOPASSWORD
+
 storeConfig
 iservchk apt
 aptitude update &> /dev/null
