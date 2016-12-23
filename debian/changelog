@@ -1,3 +1,12 @@
+stsbl-repoconfig (16.12.23-1) experimental; urgency=medium
+
+  [ Felix Jacobi ]
+  * stsbl-umode: Fixed typo.
+
+  [ Stadtteilschule Blankenese ]
+
+ -- Stadtteilschule Blankenese <repository@stsbl.de>  Fri, 23 Dec 2016 23:51:25 +0100
+
 stsbl-repoconfig (16.12.23-0) experimental; urgency=medium
 
   [ Felix Jacobi ]
