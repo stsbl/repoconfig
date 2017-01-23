@@ -55,14 +55,14 @@ readConfig() {
   fi
 }
 
-# Function for config cancelling with messagebox
+# Function for config canceling with messagebox
 # Currently unsed
 cancelConfig() {
   dialog --backtitle "StsBl Repository setup" --stdout --title "Are you sure?" --yesno "Are you sure that you want to cancel the configuration?" 15 35
   RESPOSE=$?
   if [ "$RESPOSE" = "0" ] || [ "$RESPOSE" = "255" ]
   then
-    dialog --backtitle "StsBl Repository setup" --stdout --title "Cancelled" --msgbox "You cancelled the setup."  15 35
+    dialog --backtitle "StsBl Repository setup" --stdout --title "Cancelled" --msgbox "You canceled the setup."  15 35
     exit 2
   fi
 }
