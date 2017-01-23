@@ -74,7 +74,7 @@ askForCustomerNumber() {
   CUSTOMERNUMBER=$(cat $OUTPUT)
   if [ "$RESPOSE" = "0" ]
   then
-    if [ "$CUSTOMERNUMBER" = "" ]
+    if [ -z "$CUSTOMERNUMBER" ]
     then
       dialog --backtitle "StsBl Repository setup" --stdout --title "Error" --msgbox "Customer number can not be empty.\n\nTry it again."  15 35
       askForCustomerNumber
@@ -97,7 +97,7 @@ askForPassword() {
   PASSWORD=$(cat $OUTPUT)
   if [ "$RESPOSE" = "0" ]
   then
-    if [ "$PASSWORD" = "" ]
+    if [ -z "$PASSWORD" ]
     then
       dialog --backtitle "StsBl Repository setup" --stdout --title "Error" --msgbox "Password can not be empty.\n\nTry it again."  15 35
       askForPassword
@@ -136,7 +136,7 @@ askForDists() {
     UNSTABLEENABLED=off
   fi
 
-  if [ "$REPOUPDATEMODE" = "" ]
+  if [ -z "$REPOUPDATEMODE" ]
   then
     STABLEENABLED=on
     TESTINGENABLED=off
@@ -151,7 +151,7 @@ askForDists() {
   UPDATEMODE=$(cat $OUTPUT)
   if [ "$RESPOSE" = "0" ]
   then
-    if [ "$UPDATEMODE" = "" ]
+    if [ -z "$UPDATEMODE" ]
     then
       dialog --backtitle "StsBl Repository setup" --stdout --title "Error" --msgbox "Select an update mode.\n\nTry it again."  15 35
       askForDists
