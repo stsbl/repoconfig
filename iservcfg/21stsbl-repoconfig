@@ -1,4 +1,4 @@
 #!/bin/sh
-
+set -e
 TITLE="StsBl Repository-Einrichtung"
-stsbl-repoconfig
+stsbl-repoconfig --iservcfg

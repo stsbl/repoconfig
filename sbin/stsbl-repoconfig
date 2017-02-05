@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 
 # StsBl Repository Configuration Program
 # Copyright (C) 2016 Felix Jacobi
@@ -42,7 +42,20 @@ OUTPUT=/tmp/stsbl-repoconfig-$RANDOM
 touch $OUTPUT
 
 # define global variables
-Title="IServ-Konfiguration > $(_ "StsBl Repository setup")"
+
+# prefix iservcfg to title if we are called from iservcfg
+if [ "$1" = "--iservcfg" ]
+then
+  # do not abort on errors if we are coming from iservcfg
+  set +e
+  IsIServcfg=1
+  TitlePrefix="IServ-Konfiguration > "
+else
+  IsIServcfg=0
+  TitlePrefix=""
+fi
+
+Title="$TitlePrefix""$(_ "StsBl Repository setup")"
 
 # Reading config values
 readConfig() {
@@ -166,8 +179,19 @@ askForDists() {
       fi
       if [ "$UPDATEMODE" = "unstable" ]
       then
+	if [ "$isIServcfg" = "0" ]
+	then
+	  set +e
+	fi
+
         dialog --backtitle "$Title" --stdout --title "$(_ "Are you sure?")" --yesno "$(_ "Are you sure that you want to use unstable as update mode?")\n$(_ "It could damage your system. Only using on testing systems is recommended.")" 15 35
-        RESPOSE=$?
+	RESPOSE=$?
+
+	if [ "$isIServcfg" = "0" ]
+	then
+	  set -e
+	fi
+
         if [ "$RESPOSE" = "1" ]
         then
           askForDists
