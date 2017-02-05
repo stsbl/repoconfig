@@ -12,7 +12,7 @@ stsbl-repoconfig (17.02.05-0) experimental; urgency=medium
    
   iserv: Die Dialoge von stsbl-repoconfig werden nun in die jeweilige Sprache des Benutzers übersetzt.
 
-  iserv: stsbl-repoconfig ist in ab jetzt über iservcfg erreichbar.
+  iserv: stsbl-repoconfig ist ab jetzt über iservcfg erreichbar.
 
  -- Stadtteilschule Blankenese <repository@stsbl.de>  Sun, 05 Feb 2017 19:21:05 +0100
 
