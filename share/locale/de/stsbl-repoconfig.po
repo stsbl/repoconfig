@@ -1,0 +1,80 @@
+msgid "Usement:"
+msgstr "Benutzung:"
+
+msgid "Wrong number of arguments."
+msgstr "Falsche Anzahl an Argumenten."
+
+msgid "Set a new update mode."
+msgstr "Einen neuen Update-Modus setzen."
+
+msgid "Print current update mode and exit."
+msgstr "Aktuellen Updatemodus anzeigen und Programm beenden."
+
+msgid "Print out this help and exit."
+msgstr "Diese Hilfe anzeigen und Programm beenden."
+
+msgid "Root rights are required to run this program."
+msgstr "Root-Rechte werden benötigt um dieses Programm auszuführen."
+
+msgid "The current update mode is %s."
+msgstr "Der aktuelle Updatemodus ist %s."
+
+msgid "The update mode will keep the value %s."
+msgstr "Der Updatemodus bleibt bei %s."
+
+msgid "Unknown update mode %s."
+msgstr "Unbekannter Updatemodus %s."
+
+msgid "Configuration stored successful."
+msgstr "Konfiguration erfolgreich gespeichert."
+
+msgid "StsBl Repository setup"
+msgstr "StsBl Repository-Einrichtung"
+
+msgid "Customer number"
+msgstr "Kundennummer"
+
+msgid "Enter your customer number:"
+msgstr "Kundennummer eingeben:"
+
+msgid "The customer number can not be empty."
+msgstr "Die Kundennummer kann nicht leer sein."
+
+msgid "Enter the password for the customer number %s:"
+msgstr "Geben Sie das Passwort für die Kundennummer %s ein:"
+
+msgid "The password can not be empty."
+msgstr "Das Passwort kann nicht leer sein."
+
+msgid "Please try it again."
+msgstr "Bitte versuchen Sie es erneut."
+
+msgid "Select update mode"
+msgstr "Updatemodus auswählen"
+
+msgid "Select the update mode for the repository:"
+msgstr "Updatemodus für das Repository auswählen:"
+
+msgid "Only stable updates"
+msgstr "Nur getestete Updates"
+
+msgid "testing updates"
+msgstr "Noch in der Testphase befindliche Updates"
+
+msgid "unstable updates (not recommended)"
+msgstr "Unstabile Updates (nicht empfohlen)"
+
+msgid "Please select an update mode."
+msgstr "Bitte wählen Sie einen Updatemodus."
+
+msgid "Unknown update mode."
+msgstr "Unbekannter Updatemodus."
+
+msgid "Are you sure?"
+msgstr "Sind Sie sicher?"
+
+msgid "Are you sure that you want to use unstable as update mode?"
+msgstr "Sind Sie sicher, dass sie unstabile Updates beziehen möchten?"
+
+msgid "It could damage your system. Only using on testing systems is recommended."
+msgstr "Es könnte Ihr System beschädigen. Die Verwendung ist nur auf Testsystemen empfohlen."

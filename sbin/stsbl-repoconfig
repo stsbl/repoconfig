@@ -24,15 +24,21 @@
 # source common library
 . /usr/lib/iserv/stsblrepocfg-common
 
+# source bash-gettext library
+. /usr/lib/bash-gettext/functions.sh
+
 # super user check
 if [ $UID != "0" ]; then
-  echo "Root rights are required to run this program." >&2
+  echo $(_ "Root rights are required to run this program.") >&2
   exit 0
 fi
 
 # Creating temporary file for output
 OUTPUT=/tmp/stsbl-repoconfig-$RANDOM
 echo > $OUTPUT
+
+# define global variables
+Title=$(_ "StsBl Repository setup")
 
 # Reading config values
 readConfig() {
@@ -55,28 +61,16 @@ readConfig() {
   fi
 }
 
-# Function for config canceling with messagebox
-# Currently unsed
-cancelConfig() {
-  dialog --backtitle "StsBl Repository setup" --stdout --title "Are you sure?" --yesno "Are you sure that you want to cancel the configuration?" 15 35
-  RESPOSE=$?
-  if [ "$RESPOSE" = "0" ] || [ "$RESPOSE" = "255" ]
-  then
-    dialog --backtitle "StsBl Repository setup" --stdout --title "Cancelled" --msgbox "You canceled the setup."  15 35
-    exit 2
-  fi
-}
-
 # Asking for customer number
 askForCustomerNumber() {
-  dialog --backtitle "StsBl Repository setup" --stdout --title "Customer number" --inputbox "Enter your customer number:" 14 35 $REPOCUSTOMERNUMBER > $OUTPUT
+  dialog --backtitle "$Title" --stdout --title "$(_ "Customer number")" --inputbox "$(_ "Enter your customer number:")" 14 35 $REPOCUSTOMERNUMBER > $OUTPUT
   RESPOSE=$?
   CUSTOMERNUMBER=$(cat $OUTPUT)
   if [ "$RESPOSE" = "0" ]
   then
     if [ -z "$CUSTOMERNUMBER" ]
     then
-      dialog --backtitle "StsBl Repository setup" --stdout --title "Error" --msgbox "Customer number can not be empty.\n\nTry it again."  15 35
+      dialog --backtitle "$Title" --stdout --title "$(_ "Error")" --msgbox "$(_ "The customer number can not be empty.")\n\n$(_ "Please try it again.")"  15 35
       askForCustomerNumber
       return
     else
@@ -84,7 +78,6 @@ askForCustomerNumber() {
     fi
   elif [ "$RESPOSE" = "1" ] || [ "$RESPOSE" = "255" ]
   then
-    cancelConfig
     askForCustomerNumber
     return
   fi
@@ -92,14 +85,14 @@ askForCustomerNumber() {
 
 # Asking for password
 askForPassword() {
-  dialog --backtitle "StsBl Repository setup" --stdout --title "Password" --inputbox "Enter the password for the customer number $CUSTOMERNUMBER:" 15 35 $REPOPASSWORD > $OUTPUT
+  dialog --backtitle "$Title" --stdout --title "$(_ "Password")" --inputbox "$(__ "Enter the password for the customer number %s:" "$CUSTOMERNUMBER")" 15 35 $REPOPASSWORD > $OUTPUT
   RESPOSE=$?
   PASSWORD=$(cat $OUTPUT)
   if [ "$RESPOSE" = "0" ]
   then
     if [ -z "$PASSWORD" ]
     then
-      dialog --backtitle "StsBl Repository setup" --stdout --title "Error" --msgbox "Password can not be empty.\n\nTry it again."  15 35
+      dialog --backtitle "$Title" --stdout --title "$(_ "Error")" --msgbox "$(_ "The password can not be empty.")\n\n$(_ "Please try it again.")"  15 35
       askForPassword
       return
     else
@@ -107,7 +100,6 @@ askForPassword() {
     fi
   elif [ "$RESPOSE" = "1" ] || [ "$RESPOSE" = "255" ]
   then
-    cancelConfig
     askForPassword
     return
   fi
@@ -136,24 +128,24 @@ askForDists() {
     UNSTABLEENABLED=off
   fi
 
-  if [ -z "$REPOUPDATEMODE" ]
+  if [ "$REPOUPDATEMODE" = "" ]
   then
     STABLEENABLED=on
     TESTINGENABLED=off
     UNSTABLEENABLED=off
   fi
 
-  dialog --backtitle "StsBl Repository setup" --stdout --title "Select update mode" --radiolist "Select the update mode for the repository:" 15 80 8 \
-         01 "stable" $STABLEENABLED \
-         02 "testing" $TESTINGENABLED \
-         03 "unstable (not recommended)" $UNSTABLEENABLED > $OUTPUT
+  dialog --backtitle "$Title" --stdout --title "$(_ "Select update mode")" --radiolist "$(_ "Select the update mode for the repository:")" 15 80 8 \
+         01 "$(_ "Only stable updates")" $STABLEENABLED \
+         02 "$(_ "testing updates")" $TESTINGENABLED \
+         03 "$(_ "unstable updates (not recommended)")" $UNSTABLEENABLED > $OUTPUT
   RESPOSE=$?
   UPDATEMODE=$(cat $OUTPUT)
   if [ "$RESPOSE" = "0" ]
   then
-    if [ -z "$UPDATEMODE" ]
+    if [ "$UPDATEMODE" = "" ]
     then
-      dialog --backtitle "StsBl Repository setup" --stdout --title "Error" --msgbox "Select an update mode.\n\nTry it again."  15 35
+      dialog --backtitle "$Title" --stdout --title "$(_ "Error")" --msgbox "$(_ "Please select an update mode.")\n\n$(_ "Please try it again.")"  15 35
       askForDists
     else
       if [ "$UPDATEMODE" = "01" ]
@@ -166,7 +158,7 @@ askForDists() {
       then
         UPDATEMODE=unstable
       else
-        dialog --backtitle "StsBl Repository setup" --stdout --title "Error" --msgbox "Unknown update mode.\n\nTry it again."  15 35
+        dialog --backtitle "$Title" --stdout --title "$(_ "Error")" --msgbox "$(_ "Unknown update mode.")\n\n$(_ "Please try it again.")"  15 35
         askForDists
         return
       fi
@@ -175,12 +167,12 @@ askForDists() {
         # temporary unset exit on errors, because if in the following question the user
         # would select no, the program would exit (because of exit code 1)
         set +e
-        dialog --backtitle "StsBl Repository setup" --stdout --title "Are you sure?" --yesno "Are you sure that you want to use unstable as update mode?\nIt could damage your system. Only using on testing systems is recommended." 15 35
+        dialog --backtitle "$Title" --stdout --title "$(_ "Are you sure?")" --yesno "$(_ "Are you sure that you want to use unstable as update mode?")\n$(_ "It could damage your system. Only using on testing systems is recommended.")" 15 35
         RESPOSE=$?
         if [ "$RESPOSE" = "1" ]
         then
+	  set -e
           askForDists
-          set -e
           return
         fi
       fi
@@ -188,75 +180,14 @@ askForDists() {
     fi
   elif [ "$RESPOSE" = "1" ] || [ "$RESPOSE" = "255" ]
   then
-    cancelConfig
     askForDists
     return
   fi
 
 }
 
-# Asking for suits
-# currently unused
-askForSuits() {
-  MAINENABLED=off
-  NONFREEENABLED=off
-
-  for SUIT in $REPOSUITS
-  do
-    if [ "$SUIT" = "main" ]
-    then
-      MAINENABLED=on
-    fi
-    if [ "$SUIT" = "non-free" ]
-    then
-      NONFREEENABLED=on
-    fi
-  done
-
-  if [ "$MAINENABLED" = "off" ] && [ "$NONFREEENABLED" = "off" ]
-  then
-    MAINENABLED=on
-  fi
-
-  dialog --backtitle "StsBl Repository setup" --stdout --title "Select suits" --checklist "Select the suits from which you want to install packages:" 15 80 8 \
-         01 "main" $MAINENABLED \
-         02 "non-free (indemnity agreement required)" $NONFREEENABLED > $OUTPUT
-  RESPOSE=$?
-  SUITS=$(cat $OUTPUT)
-  if [ "$RESPOSE" = "0" ]
-  then
-    if [ "$SUITS" = "0" ]
-    then
-      dialog --backtitle "StsBl Repository setup" --stdout --title "Error" --msgbox "Select at least one suite.\n\nTry it again."  15 35
-      askForSuits
-      return
-    else
-      # Required fix for debians dialog
-      SUITLIST=""
-      NEWFILE="$OUTPUT.sed"
-      sed 's/"//g' $OUTPUT > $NEWFILE
-      SUITS=$(cat $NEWFILE)
-      for SUIT in $SUITS
-      do
-        if [ "$SUIT" = "01" ]; then
-          SUITLIST="$SUITLIST main"
-        elif [ "$SUIT" = "02" ]; then
-          SUITLIST="$SUITLIST non-free"
-        fi
-      done
-      SUITS="$SUITLIST"
-      echo
-    fi
-  elif [ "$RESPOSE" = "1" ] || [ "$RESPOSE" = "255" ]
-  then
-    cancelConfig
-    askForSuits
-    return
-  fi
-}
-
 callSysFunctions() {
-  iservchk apt
+  iservchk -a apt
   aptitude update &> /dev/null
 }
 

@@ -21,32 +21,38 @@
 # TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+# use translations from iserv
+export BASHGT_DOMAIN=iserv
+
 # source common library
 . /usr/lib/iserv/stsblrepocfg-common
 
+# source bash-gettext library
+. /usr/lib/bash-gettext/functions.sh
+
 # Prints out the program help
 echoHelp() {
-  echo "Usement:"
+  echo $(_ "Usement:")
   echo "  stsbl-umode"
-  echo "  Print current update mode and exit."
+  echo "  $(_ "Print current update mode and exit.")"
   echo
   echo "  stsbl-umode [ stable | testing | unstable ]"
-  echo "  Set a new update mode."
+  echo "  $(_ "Set a new update mode.")"
   echo
   echo "  stsbl-umode --help"
-  echo "  Print out this help and exit."
+  echo "  $(_ "Print out this help and exit.")"
 }
 
 # super user check
 if [ $UID != 0 ]; then
-  echo "Root rights are required to run this program." >&2
+  echo $(_ "Root rights are required to run this program.") >&2
   exit 1
 fi
 
 # Checking number of arguments
 if [ "$#" -gt 1 ] || [ "$#" -lt 0 ]
 then
-  echo "Wrong number of arguments." >&2
+  echo $(_ "Wrong number of arguments.") >&2
   echo >&2
   echoHelp >&2
   exit 1
@@ -66,19 +72,19 @@ NEWUPDATEMODE="$1"
 
 if [ "$#" = 0 ]
 then
-  echo "The current update mode is $OLDUPDATEMODE."
+  echo $(__ "The current update mode is %s." "$OLDUPDATEMODE")
   exit 0
 fi
 
 if [ "$NEWUPDATEMODE" = "$OLDUPDATEMODE" ]
 then
-  echo "The update mode will keep the value $NEWUPDATEMODE."
+  echo $(__ "The update mode will keep the value %s." "$NEWUPDATEMODE")
   exit 0
 elif [ "$NEWUPDATEMODE" = "stable" ] || [ "$NEWUPDATEMODE" = "testing" ] || [ "$NEWUPDATEMODE" = "unstable" ]
 then
   echo "$OLDUPDATEMODE -> $NEWUPDATEMODE"
 else
-  echo "Unknown update mode $NEWUPDATEMODE." >&2
+  echo $(__ "Unknown update mode %s." "$NEWUPDATEMODE") >&2
   echo >&2
   echoHelp >&2
   exit 1
