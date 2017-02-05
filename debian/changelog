@@ -1,3 +1,11 @@
+stsbl-repoconfig (17.02.05-1) experimental; urgency=medium
+
+  [ Felix Jacobi ]
+  * Updated package description.
+  * Fixed iserv: message.
+
+ -- Stadtteilschule Blankenese <repository@stsbl.de>  Sun, 05 Feb 2017 19:29:56 +0100
+
 stsbl-repoconfig (17.02.05-0) experimental; urgency=medium
 
   [ Felix Jacobi ]
