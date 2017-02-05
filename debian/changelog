@@ -1,3 +1,10 @@
+stsbl-repoconfig (17.02.05-2) experimental; urgency=medium
+
+  [ Felix Jacobi ]
+  * Fixed missing gettext domain.
+
+ -- Stadtteilschule Blankenese <repository@stsbl.de>  Sun, 05 Feb 2017 19:35:53 +0100
+
 stsbl-repoconfig (17.02.05-1) experimental; urgency=medium
 
   [ Felix Jacobi ]
