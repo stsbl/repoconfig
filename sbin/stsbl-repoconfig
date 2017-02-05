@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 
 # StsBl Repository Configuration Program
 # Copyright (C) 2016 Felix Jacobi
@@ -39,10 +39,10 @@ fi
 
 # Creating temporary file for output
 OUTPUT=/tmp/stsbl-repoconfig-$RANDOM
-echo > $OUTPUT
+touch $OUTPUT
 
 # define global variables
-Title=$(_ "StsBl Repository setup")
+Title="IServ-Konfiguration > $(_ "StsBl Repository setup")"
 
 # Reading config values
 readConfig() {
@@ -82,8 +82,7 @@ askForCustomerNumber() {
     fi
   elif [ "$RESPOSE" = "1" ] || [ "$RESPOSE" = "255" ]
   then
-    askForCustomerNumber
-    return
+    exit 0
   fi
 }
 
@@ -104,8 +103,7 @@ askForPassword() {
     fi
   elif [ "$RESPOSE" = "1" ] || [ "$RESPOSE" = "255" ]
   then
-    askForPassword
-    return
+    exit 0
   fi
 }
 
@@ -168,14 +166,10 @@ askForDists() {
       fi
       if [ "$UPDATEMODE" = "unstable" ]
       then
-        # temporary unset exit on errors, because if in the following question the user
-        # would select no, the program would exit (because of exit code 1)
-        set +e
         dialog --backtitle "$Title" --stdout --title "$(_ "Are you sure?")" --yesno "$(_ "Are you sure that you want to use unstable as update mode?")\n$(_ "It could damage your system. Only using on testing systems is recommended.")" 15 35
         RESPOSE=$?
         if [ "$RESPOSE" = "1" ]
         then
-	  set -e
           askForDists
           return
         fi
@@ -184,8 +178,7 @@ askForDists() {
     fi
   elif [ "$RESPOSE" = "1" ] || [ "$RESPOSE" = "255" ]
   then
-    askForDists
-    return
+    exit 0
   fi
 
 }
