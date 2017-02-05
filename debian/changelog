@@ -1,3 +1,21 @@
+stsbl-repoconfig (17.02.05-0) experimental; urgency=medium
+
+  [ Felix Jacobi ]
+  * Updated debian copyright.
+  * Use zero value operator.
+  * Fixed spelling.
+  * Added l10n via gettext.
+  * Added dependency on bash-gettext.
+  * Updated packaging.
+  * Added menu item for stsbl-repoconfig to iservcfg.
+  * Updated package description.
+   
+  iserv: Die Dialoge von stsbl-repoconfig werden nun in die jeweilige Sprache des Benutzers übersetzt.
+
+  iserv: stsbl-repoconfig ist in ab jetzt über iservcfg erreichbar.
+
+ -- Stadtteilschule Blankenese <repository@stsbl.de>  Sun, 05 Feb 2017 19:21:05 +0100
+
 stsbl-repoconfig (16.12.24-0) experimental; urgency=medium
 
   [ Felix Jacobi ]
