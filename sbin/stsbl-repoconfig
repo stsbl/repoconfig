@@ -21,11 +21,15 @@
 # TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+# set global variables
+export BASHGT_DOMAIN=iserv
+
 # source common library
 . /usr/lib/iserv/stsblrepocfg-common
 
 # source bash-gettext library
 . /usr/lib/bash-gettext/functions.sh
+
 
 # super user check
 if [ $UID != "0" ]; then
