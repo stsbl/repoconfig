@@ -2,4 +2,5 @@ lib/* 		usr/lib/iserv/
 sbin/* 		usr/sbin/
 iconf/* 	usr/share/iserv/iconf/
 iservchk/* 	usr/share/iserv/iconf/etc/iserv/chk.d/
+iservcfg/*	usr/share/iserv/iservcfg/
 share/* 	usr/share/iserv/

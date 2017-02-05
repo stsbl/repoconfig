@@ -1,0 +1,4 @@
+#!/bin/sh
+
+TITLE="StsBl Repository-Einrichtung"
+stsbl-repoconfig
