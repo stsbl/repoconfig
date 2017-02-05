@@ -12,7 +12,7 @@ Depends: aptitude, bash (>= 4.2), coreutils, dialog, iserv-update, stsbl-keyring
 Description: Stadtteilschule Blankenese: Repository-Konfigurationsprogramm
  Mit diesem auf iservchk basierendem Programm lässt sich das Repository der Stadtteilschule Blankenese auf dem eigenen IServ einrichten und verwalten.
  .
- Das Tool wird über die Rootshell mit dem Befehl 'stsbl-repoconfig' aufgerufen.
+ Die Konfiguration kann als root in iservcfg unter dem Menüpunkt stsbl-repoconfig aufgerufen werden.
  .
  https://it.stsbl.de/wp-content/uploads/2016/09/1-1.png
 Tag: role::plugin, status::recommended, suite::iserv:portal, suite::iserv:backup, implemented-in::shell
