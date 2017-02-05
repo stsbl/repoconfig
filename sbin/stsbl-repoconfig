@@ -233,6 +233,7 @@ askForPassword
 storeConfig
 readConfig
 askForDists
+echo $(_ "Please wait ...")
 storeConfig
 readConfig
 showSnapshotMessage

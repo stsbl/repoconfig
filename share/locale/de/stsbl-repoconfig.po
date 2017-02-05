@@ -78,3 +78,6 @@ msgstr "Sind Sie sicher, dass sie unstabile Updates beziehen möchten?"
 
 msgid "It could damage your system. Only using on testing systems is recommended."
 msgstr "Es könnte Ihr System beschädigen. Die Verwendung ist nur auf Testsystemen empfohlen."
+
+msgid "Please wait ..."
+msgstr "Bitte warten ..."

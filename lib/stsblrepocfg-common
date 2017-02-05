@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Common functions of stsbl-repconfig used by all components.
+# Common functions of stsbl-repoconfig used by all components.
 
 # Storing values to state file
 storeConfig() {
