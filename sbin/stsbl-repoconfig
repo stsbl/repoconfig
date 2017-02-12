@@ -214,7 +214,7 @@ callSysFunctions() {
   do
     echo -n ". "
   done
-  echo " "$(_ "Done.")
+  echo $(_ "Done.")
   sleep 5s
 }
 
