@@ -81,3 +81,6 @@ msgstr "Es könnte Ihr System beschädigen. Die Verwendung ist nur auf Testsyste
 
 msgid "Please wait ..."
 msgstr "Bitte warten ..."
+
+msgid "Refreshing package list"
+msgstr "Aktualisiere Paket-Liste"
