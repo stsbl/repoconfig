@@ -1,3 +1,12 @@
+stsbl-repoconfig (17.02.12-0) experimental; urgency=medium
+
+  [ Felix Jacobi ]
+  * Always exit with code 0 to prevent termination of iservcfg.
+  * Improved integration in iservcfg.
+  * Added wait message.
+
+ -- Stadtteilschule Blankenese <repository@stsbl.de>  Sun, 12 Feb 2017 05:51:20 +0100
+
 stsbl-repoconfig (17.02.05-2) experimental; urgency=medium
 
   [ Felix Jacobi ]
