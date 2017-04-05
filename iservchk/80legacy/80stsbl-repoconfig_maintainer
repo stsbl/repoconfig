@@ -6,3 +6,15 @@ Test "stsbl: Fix typos in package maintainer"
    else
      echo 80stsbl-repoconfig_maintainer >> /var/lib/iserv/config/update.log
    fi"
+
+Test "Deploy: fix MiKTeX update message"
+  "grep ^80stsbl-repoconfig_maintainer_1$ /var/lib/iserv/config/update.log"
+  "if [[ $(dpkg-query --showformat='${Status}\n' --show 'iserv-news' | grep 'install ok installed')  ]]
+   then
+     psql -c \"UPDATE news_changelog SET text = 'Die enthaltenen MiKTeX-Pakete wurden aktualisiert. Der zu installierende Paketumfang kann nun in den Paketeigenschaften eingestellt werden.' WHERE text = 'Die enthaltenen MiKTeX-Pakete wurden aktualisiert. Der zu installierende Paketumfang kann nun in den Paketeigenschaft eingestellt werden.'\" iserv postgres &&
+     echo 80stsbl-repoconfig_maintainer_1 >> /var/lib/iserv/config/update.log
+   else
+     echo 80stsbl-repoconfig_maintainer_1 >> /var/lib/iserv/config/update.log
+   fi"
+
+
