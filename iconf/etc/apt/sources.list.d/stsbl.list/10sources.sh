@@ -9,14 +9,14 @@ else
   REPOHOST="repository.stsbl.de"
 fi
 
-if [ "$REPOCUSTOMERNUMBER" = "" ] || [ "$REPOPASSWORD" = "" ]
+if [ -z "$REPOCUSTOMERNUMBER" ] || [ -z "$REPOPASSWORD" ]
 then
   REPOBASEURL="https://$REPOHOST/debian"
 else
   REPOBASEURL="https://customer-$REPOCUSTOMERNUMBER:$REPOPASSWORD@$REPOHOST/debian"
 fi
 
-if [ "$REPOUPDATEMODE" = "" ]
+if [ -z "$REPOUPDATEMODE" ]
 then
   REPOUPDATEMODE=stable
 fi
