@@ -1,4 +1,0 @@
-# Install the repository status monitor initially on portal servers, but don't on backup servers e.g.
-Test "Install stsbl-iserv-repo-mon on portal servers"
-  "grep ^80stsbl-repoconfig$ /var/lib/iserv/config/update.log"
-  "if [[ $(dpkg-query --showformat='${Status}\n' --show 'iserv-portal' | grep 'install ok installed') ]]; then /usr/lib/iserv/aptitude_auto install stsbl-iserv-repo-mon && echo 80stsbl-repoconfig >> /var/lib/iserv/config/update.log; iservchk -a apache iserv3 system; else echo 80stsbl-repoconfig >> /var/lib/iserv/config/update.log; fi;"
