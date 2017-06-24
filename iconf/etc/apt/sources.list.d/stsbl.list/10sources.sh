@@ -2,12 +2,7 @@
 
 . /usr/lib/iserv/stsblrepocfg
 
-if [ "$(hostname)" = "rpt.stsbl.test" ]
-then
-  REPOHOST="snapshot.repository.stsbl.de"
-else
-  REPOHOST="repository.stsbl.de"
-fi
+REPOHOST="repository.stsbl.de"
 
 if [ -z "$REPOCUSTOMERNUMBER" ] || [ -z "$REPOPASSWORD" ]
 then

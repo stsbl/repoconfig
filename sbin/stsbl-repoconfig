@@ -218,18 +218,6 @@ callSysFunctions() {
   sleep 5s
 }
 
-showSnapshotMessage() {
-  # use snapshot server for repository testing server
-  if [ $(hostname) = "rpt.stsbl.test" ]
-  then
-    echo "Hi there! I've dectected that you are on $(hostname). So, you going to use the snapshot repository."
-    echo "Enjoy!"
-    echo
-    echo "Press any key to continue..."
-    read
-  fi
-}
-
 # main program
 readConfig
 askForCustomerNumber
@@ -242,7 +230,6 @@ askForDists
 echo $(_ "Please wait ...")
 storeConfig
 readConfig
-showSnapshotMessage
 callSysFunctions
 
 # cleaning up
