@@ -2,7 +2,8 @@ Source: stsbl-repoconfig
 Section: utils
 Priority: extra
 Maintainer: Stadtteilschule Blankenese <repository@stsbl.de>
-Build-Depends: debhelper (>=9), iserv3-dev
+Build-Depends: debhelper (>=9)
+Build-Depends-Indep: iserv3-dev
 Standards-Version: 3.9.6
 Homepage: https://it.stsbl.de/documentation/tools/stsbl-repoconfig
 
