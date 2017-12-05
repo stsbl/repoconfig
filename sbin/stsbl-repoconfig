@@ -207,9 +207,6 @@ askForDists() {
 
 }
 
-callSysFunctions() {
-  iservchk -a apt
-}
 
 # main program
 readConfig
@@ -223,7 +220,7 @@ askForDists
 echo $(_ "Please wait ...")
 storeConfig
 readConfig
-callSysFunctions
+iservchk apt
 
 # cleaning up
 rm -f $OUTPUT
