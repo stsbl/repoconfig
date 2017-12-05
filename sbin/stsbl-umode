@@ -70,6 +70,18 @@ fi
 OLDUPDATEMODE="$REPOUPDATEMODE"
 NEWUPDATEMODE="$1"
 
+case "$NEWUPDATEMODE" in
+  "s")
+    NEWUPDATEMODE=stable
+    ;;
+  "t")
+    NEWUPDATEMODE=testing
+    ;;
+  "u")
+    NEWUPDATEMODE=unstable
+    ;;
+esac
+    
 if [ "$#" = 0 ]
 then
   echo $(__ "The current update mode is %s." "$OLDUPDATEMODE")
