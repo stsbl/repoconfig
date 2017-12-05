@@ -97,5 +97,4 @@ PASSWORD=$REPOPASSWORD
 
 storeConfig
 iservchk apt
-aptitude update &> /dev/null
 exit 0

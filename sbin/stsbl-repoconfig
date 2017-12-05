@@ -209,13 +209,6 @@ askForDists() {
 
 callSysFunctions() {
   iservchk -a apt
-  echo -n $(_ "Refreshing package list")" "
-  aptitude update | while read i
-  do
-    echo -n ". "
-  done
-  echo $(_ "Done.")
-  sleep 5s
 }
 
 # main program
