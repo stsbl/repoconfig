@@ -19,7 +19,6 @@ storeConfig() {
   echo "# Automatically generated! Do not change!" >> /var/lib/stsbl/repoconfig.sh
   echo "REPOCUSTOMERNUMBER=\"$CUSTOMERNUMBER\"" >> /var/lib/stsbl/repoconfig.sh
   echo "REPOPASSWORD=\"$PASSWORD\"" >> /var/lib/stsbl/repoconfig.sh
-  echo "REPOUPDATEMODE=\"$UPDATEMODE\"" >> /var/lib/stsbl/repoconfig.sh
 
   echo $(_ "Configuration stored successful." )
 }

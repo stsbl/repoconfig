@@ -120,94 +120,6 @@ askForPassword() {
   fi
 }
 
-# Asking for dists
-askForDists() {
-  if [ "$REPOUPDATEMODE" = "stable" ]
-  then
-    STABLEENABLED=on
-  else
-    STABLEENABLED=off
-  fi
-
-  if [ "$REPOUPDATEMODE" = "testing" ]
-  then
-    TESTINGENABLED=on
-  else
-    TESTINGENABLED=off
-  fi
-
-  if [ "$REPOUPDATEMODE" = "unstable" ]
-  then
-    UNSTABLEENABLED=on
-  else
-    UNSTABLEENABLED=off
-  fi
-
-  if [ "$REPOUPDATEMODE" = "" ]
-  then
-    STABLEENABLED=on
-    TESTINGENABLED=off
-    UNSTABLEENABLED=off
-  fi
-
-  dialog --backtitle "$Title" --stdout --title "$(_ "Select update mode")" --radiolist "$(_ "Select the update mode for the repository:")" 15 80 8 \
-         01 "$(_ "Only stable updates")" $STABLEENABLED \
-         02 "$(_ "testing updates")" $TESTINGENABLED \
-         03 "$(_ "unstable updates (not recommended)")" $UNSTABLEENABLED > $OUTPUT
-  RESPOSE=$?
-  UPDATEMODE=$(cat $OUTPUT)
-  if [ "$RESPOSE" = "0" ]
-  then
-    if [ "$UPDATEMODE" = "" ]
-    then
-      dialog --backtitle "$Title" --stdout --title "$(_ "Error")" --msgbox "$(_ "Please select an update mode.")\n\n$(_ "Please try it again.")"  15 35
-      askForDists
-    else
-      if [ "$UPDATEMODE" = "01" ]
-      then
-        UPDATEMODE=stable
-      elif [ "$UPDATEMODE" = "02" ]
-      then
-        UPDATEMODE=testing
-      elif [ "$UPDATEMODE" = "03" ]
-      then
-        UPDATEMODE=unstable
-      else
-        dialog --backtitle "$Title" --stdout --title "$(_ "Error")" --msgbox "$(_ "Unknown update mode.")\n\n$(_ "Please try it again.")"  15 35
-        askForDists
-        return
-      fi
-      if [ "$UPDATEMODE" = "unstable" ]
-      then
-	if [ "$isIServcfg" = "0" ]
-	then
-	  set +e
-	fi
-
-        dialog --backtitle "$Title" --stdout --title "$(_ "Are you sure?")" --yesno "$(_ "Are you sure that you want to use unstable as update mode?")\n$(_ "It could damage your system. Only using on testing systems is recommended.")" 15 35
-	RESPOSE=$?
-
-	if [ "$isIServcfg" = "0" ]
-	then
-	  set -e
-	fi
-
-        if [ "$RESPOSE" = "1" ]
-        then
-          askForDists
-          return
-        fi
-      fi
-      echo
-    fi
-  elif [ "$RESPOSE" = "1" ] || [ "$RESPOSE" = "255" ]
-  then
-    exit 0
-  fi
-
-}
-
-
 # main program
 readConfig
 askForCustomerNumber
@@ -216,7 +128,6 @@ readConfig
 askForPassword
 storeConfig
 readConfig
-askForDists
 echo $(_ "Please wait ...")
 storeConfig
 readConfig

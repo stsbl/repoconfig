@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 . /usr/lib/iserv/stsblrepocfg
 . /usr/lib/iserv/sh-functions
@@ -12,12 +12,9 @@ else
   REPOBASEURL="https://customer-$REPOCUSTOMERNUMBER:$REPOPASSWORD@$REPOHOST/debian"
 fi
 
-if [ -z "$REPOUPDATEMODE" ]
-then
-  REPOUPDATEMODE=stable
-fi
+REPOUPDATEMODE="$(< /etc/iserv/update)"
+DEBIAN="$(get_debian_release)"
 
-DEBIAN=$(get_debian_release)
 echo "# Update mode: $REPOUPDATEMODE, Debian release: $DEBIAN"
 echo
 echo "# repository urls for iserv packages"

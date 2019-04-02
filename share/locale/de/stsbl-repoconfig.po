@@ -48,33 +48,3 @@ msgstr "Das Passwort kann nicht leer sein."
 
 msgid "Please try it again."
 msgstr "Bitte versuchen Sie es erneut."
-
-msgid "Select update mode"
-msgstr "Updatemodus auswählen"
-
-msgid "Select the update mode for the repository:"
-msgstr "Updatemodus für das Repository auswählen:"
-
-msgid "Only stable updates"
-msgstr "Nur getestete Updates"
-
-msgid "testing updates"
-msgstr "Noch in der Testphase befindliche Updates"
-
-msgid "unstable updates (not recommended)"
-msgstr "Unstabile Updates (nicht empfohlen)"
-
-msgid "Please select an update mode."
-msgstr "Bitte wählen Sie einen Updatemodus."
-
-msgid "Unknown update mode."
-msgstr "Unbekannter Updatemodus."
-
-msgid "Are you sure?"
-msgstr "Sind Sie sicher?"
-
-msgid "Are you sure that you want to use unstable as update mode?"
-msgstr "Sind Sie sicher, dass sie unstabile Updates beziehen möchten?"
-
-msgid "It could damage your system. Only using on testing systems is recommended."
-msgstr "Es könnte Ihr System beschädigen. Die Verwendung ist nur auf Testsystemen empfohlen."
