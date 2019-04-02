@@ -1,3 +1,20 @@
+stsbl-repoconfig (19.04.03-1) experimental; urgency=medium
+
+  * stsbl-repoconfig: Do not use auto mode of iservchk
+  * Added lintian overrides
+  * Updated packaging
+  * Updated build rules for webpack support
+  * Removed custom update mode, tether it to IServ update mode
+
+  iserv: Um die technische Qualität künftiger Updates erhöhen zu können, wurde
+    die Einstellung für den separaten Update-Modus des Repositorys der
+    Stadtteilschule Blankenese entfernt. Die Auswahl des Update-Modus erfolgt
+    nun ausschließlich anhand des IServ-Update-Modus. Dieser kann wie üblich
+    als root über den Menüpunkt "update" im Programm "iservcfg" geändert
+    werden.
+
+ -- Felix Jacobi <Felix@jacobi-hamburg.net>  Wed, 03 Apr 2019 01:48:36 +0200
+
 stsbl-repoconfig (17.10.06-0) experimental; urgency=medium
 
   * Updated sources list generation for Debian Stretch and other future Debian
