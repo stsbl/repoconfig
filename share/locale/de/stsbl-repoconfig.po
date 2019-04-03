@@ -1,29 +1,5 @@
-msgid "Usement:"
-msgstr "Benutzung:"
-
-msgid "Wrong number of arguments."
-msgstr "Falsche Anzahl an Argumenten."
-
-msgid "Set a new update mode."
-msgstr "Einen neuen Update-Modus setzen."
-
-msgid "Print current update mode and exit."
-msgstr "Aktuellen Updatemodus anzeigen und Programm beenden."
-
-msgid "Print out this help and exit."
-msgstr "Diese Hilfe anzeigen und Programm beenden."
-
 msgid "Root rights are required to run this program."
 msgstr "Root-Rechte werden benötigt um dieses Programm auszuführen."
-
-msgid "The current update mode is %s."
-msgstr "Der aktuelle Updatemodus ist %s."
-
-msgid "The update mode will keep the value %s."
-msgstr "Der Updatemodus bleibt bei %s."
-
-msgid "Unknown update mode %s."
-msgstr "Unbekannter Updatemodus %s."
 
 msgid "Configuration stored successful."
 msgstr "Konfiguration erfolgreich gespeichert."
