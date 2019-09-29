@@ -25,5 +25,5 @@ Description: Stadtteilschule Blankenese: Repository-Konfigurationsprogramm
  Die Konfiguration kann als root in iservcfg unter dem Menüpunkt
  stsbl-repoconfig aufgerufen werden.
  .
- https://it.stsbl.de/wp-content/uploads/2016/09/1-1.png
+ https://it.stsbl.de/wp-content/uploads/2019/09/1-1.png
 Tag: role::plugin, status::recommended, suite::iserv:portal, suite::iserv:backup, implemented-in::shell
