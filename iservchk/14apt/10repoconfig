@@ -1,0 +1,13 @@
+# Creating variable status file
+MkDir 0755 root:root /var/lib/stsbl
+Touch /var/lib/stsbl/repoconfig.sh
+ChPerm 0600 root:root /var/lib/stsbl/repoconfig.sh
+
+# Checking sources list
+Check /etc/apt/sources.list.d/stsbl.list
+
+# Checking credentials file
+Touch /etc/apt/auth.conf.d/stsbl.conf
+ChPerm 0600 root:root /etc/apt/auth.conf.d/stsbl.conf
+Check /etc/apt/auth.conf.d/stsbl.conf
+
