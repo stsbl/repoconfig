@@ -1,10 +1,12 @@
-# STSBL Repository credentials configration
+# STSBL Repository sources list
 #
 # This file is generated automatically by iservchk.
 # It is not recommended to make any changes to this file.
 # If really necessary you can save changes permanently using:
-#   iconf save $FN
+#   iconf save /etc/apt/sources.list.d/stsbl.list
+#
+# To edit the update mode and the suits use the program 'stsbl-repoconfig'.
 #
 # For your own settings you can use:
-#   /etc/apt/apt_auth.conf.d/
+#   /etc/apt/sources.list.d/
 
