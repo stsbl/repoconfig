@@ -1,4 +1,5 @@
-#!/bin/bash -e
+#!/bin/bash
+set -e
 
 # StsBl Repository Configuration Program
 # Copyright (C) 2019 Felix Jacobi
@@ -22,26 +23,20 @@
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 # set global variables
-export BASHGT_DOMAIN=iserv
+export TEXTDOMAIN=iserv
 
 # source common library
 . /usr/lib/iserv/stsblrepocfg-common
-
-# source bash-gettext library
-. /usr/lib/bash-gettext/functions.sh
-
+. /usr/bin/gettext.sh
 
 # super user check
 if [ $UID != "0" ]; then
-  echo $(_ "Root rights are required to run this program.") >&2
+  echo $(eval_gettext "Root rights are required to run this program.") >&2
   exit 0
 fi
 
 # Creating temporary file for output
-OUTPUT=/tmp/stsbl-repoconfig-$RANDOM
-touch $OUTPUT
-
-# define global variables
+OUTPUT="$(mktemp stsbl-repoconfig.XXXXXXXXX)" 
 
 # prefix iservcfg to title if we are called from iservcfg
 if [ "$1" = "--iservcfg" ]
@@ -55,7 +50,7 @@ else
   TitlePrefix=""
 fi
 
-Title="$TitlePrefix""$(_ "StsBl Repository setup")"
+Title="$TitlePrefix""$(eval_gettext "StsBl Repository setup")"
 
 # Reading config values
 readConfig() {
@@ -64,30 +59,30 @@ readConfig() {
 
   if [ -v REPOCUSTOMERNUMBER ]
   then
-    CUSTOMERNUMBER=$REPOCUSTOMERNUMBER
+    CUSTOMERNUMBER="$REPOCUSTOMERNUMBER"
   fi
 
   if [ -v REPOPASSWORD ]
   then
-    PASSWORD=$REPOPASSWORD
+    PASSWORD="$REPOPASSWORD"
   fi
 
   if [ -v REPOUPDATEMODE ]
   then
-    UPDATEMODE=$REPOUPDATEMODE
+    UPDATEMODE="$REPOUPDATEMODE"
   fi
 }
 
 # Asking for customer number
 askForCustomerNumber() {
-  dialog --backtitle "$Title" --stdout --title "$(_ "Customer number")" --inputbox "$(_ "Enter your customer number:")" 14 35 $REPOCUSTOMERNUMBER > $OUTPUT
+  dialog --backtitle "$Title" --stdout --title "$(eval_gettext "Customer number")" --inputbox "$(eval_gettext "Enter your customer number:")" 14 35 "$REPOCUSTOMERNUMBER" > "$OUTPUT"
   RESPOSE=$?
   CUSTOMERNUMBER=$(cat $OUTPUT)
   if [ "$RESPOSE" = "0" ]
   then
     if [ -z "$CUSTOMERNUMBER" ]
     then
-      dialog --backtitle "$Title" --stdout --title "$(_ "Error")" --msgbox "$(_ "The customer number can not be empty.")\n\n$(_ "Please try it again.")"  15 35
+      dialog --backtitle "$Title" --stdout --title "$(eval_gettext "Error")" --msgbox "$(eval_gettext "The customer number can not be empty.")\n\n$(eval_gettext "Please try it again.")"  15 35
       askForCustomerNumber
       return
     else
@@ -101,14 +96,14 @@ askForCustomerNumber() {
 
 # Asking for password
 askForPassword() {
-  dialog --backtitle "$Title" --stdout --title "$(_ "Password")" --inputbox "$(__ "Enter the password for the customer number %s:" "$CUSTOMERNUMBER")" 15 35 $REPOPASSWORD > $OUTPUT
+  dialog --backtitle "$Title" --stdout --title "$(eval_gettext "Password")" --inputbox "$(printf "$(eval_gettext "Enter the password for the customer number %s:")" "$CUSTOMERNUMBER")" 15 35 "$REPOPASSWORD" > "$OUTPUT"
   RESPOSE=$?
   PASSWORD=$(cat $OUTPUT)
   if [ "$RESPOSE" = "0" ]
   then
     if [ -z "$PASSWORD" ]
     then
-      dialog --backtitle "$Title" --stdout --title "$(_ "Error")" --msgbox "$(_ "The password can not be empty.")\n\n$(_ "Please try it again.")"  15 35
+      dialog --backtitle "$Title" --stdout --title "$(eval_gettext "Error")" --msgbox "$(eval_gettext "The password can not be empty.")\n\n$(eval_gettext "Please try it again.")"  15 35
       askForPassword
       return
     else
@@ -128,7 +123,7 @@ readConfig
 askForPassword
 storeConfig
 readConfig
-echo $(_ "Please wait ...")
+eval_gettext "Please wait ..."
 storeConfig
 readConfig
 iservchk apt

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+. /usr/bin/gettext.sh
+
 # Common functions of stsbl-repoconfig used by all components.
 
 # Storing values to state file
@@ -20,5 +22,5 @@ storeConfig() {
   echo "REPOCUSTOMERNUMBER=\"$CUSTOMERNUMBER\"" >> /var/lib/stsbl/repoconfig.sh
   echo "REPOPASSWORD=\"$PASSWORD\"" >> /var/lib/stsbl/repoconfig.sh
 
-  echo $(_ "Configuration stored successful." )
+  eval_gettext "Configuration stored successful."
 }
