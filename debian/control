@@ -2,22 +2,21 @@ Source: stsbl-repoconfig
 Section: utils
 Priority: optional
 Maintainer: Stadtteilschule Blankenese <repository@stsbl.de>
-Build-Depends: debhelper (>= 10)
-Build-Depends-Indep: iserv-buildtools
+Build-Depends: debhelper-compat (= 13), dh-sequence-iserv, dh-sequence-stsbl
 Standards-Version: 4.5.0
 Homepage: https://it.stsbl.de/documentation/tools/stsbl-repoconfig
 
 Package: stsbl-repoconfig
 Architecture: all
-Depends: ${misc:Depends},
-  ${perl:Depends},
-  aptitude,
-  bash (>= 4.2),
-  gettext-base,
-  dialog,
-  iserv-update,
-  stsbl-keyring,
-Xb-Private-IServ-Revision: ${iserv:Revision}
+Depends: aptitude,
+         bash (>= 4.2),
+         dialog,
+         gettext-base,
+         iserv-update,
+         stsbl-keyring,
+         ${misc:Depends},
+         ${perl:Depends}
+Xb-Private-Iserv-Revision: ${iserv:Revision}
 Description: Stadtteilschule Blankenese: Repository-Konfigurationsprogramm
  Mit diesem auf iservchk basierendem Programm lässt sich das Repository der
  Stadtteilschule Blankenese auf dem eigenen IServ einrichten und verwalten.
