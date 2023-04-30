@@ -1,0 +1,66 @@
+msgid ""
+msgstr ""
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: lib/stsblrepocfg-common
+#, sh-format
+msgid "Configuration stored successful."
+msgstr "Konfiguration erfolgreich gespeichert."
+
+#: sbin/stsbl-repoconfig
+#, sh-format
+msgid "Customer number"
+msgstr "Kundennummer"
+
+#: sbin/stsbl-repoconfig
+#, sh-format
+msgid "Enter the password for the customer number %s:"
+msgstr "Geben Sie das Passwort für die Kundennummer %s ein:"
+
+#: sbin/stsbl-repoconfig
+#, sh-format
+msgid "Enter your customer number:"
+msgstr "Kundennummer eingeben:"
+
+#: sbin/stsbl-repoconfig
+#, sh-format
+msgid "Error"
+msgstr "Fehler"
+
+#: sbin/stsbl-repoconfig
+#, sh-format
+msgid "Password"
+msgstr "Passwort"
+
+#: sbin/stsbl-repoconfig
+#, sh-format
+msgid "Please try it again."
+msgstr "Bitte versuchen Sie es erneut."
+
+#: sbin/stsbl-repoconfig
+#, sh-format
+msgid "Please wait ..."
+msgstr "Bitte warten ..."
+
+#: sbin/stsbl-repoconfig
+#, sh-format
+msgid "Root rights are required to run this program."
+msgstr "Root-Rechte werden benötigt, um dieses Programm auszuführen."
+
+#: sbin/stsbl-repoconfig
+#, sh-format
+msgid "StsBl Repository setup"
+msgstr "StsBl Repository-Einrichtung"
+
+#: sbin/stsbl-repoconfig
+#, sh-format
+msgid "The customer number can not be empty."
+msgstr "Die Kundennummer kann nicht leer sein."
+
+#: sbin/stsbl-repoconfig
+#, sh-format
+msgid "The password can not be empty."
+msgstr "Das Passwort kann nicht leer sein."
