@@ -3,3 +3,7 @@ debian/stsbl-repoconfig.debhelper.log
 debian/stsbl-repoconfig.substvars
 debian/files
 debian/debhelper-build-stamp
+/Makefile.iservmake
+/locale
+/system-locale
+!/locale/templates/*_misc.pot
